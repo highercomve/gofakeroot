@@ -29,7 +29,7 @@ jobs:
         go-version: ${{ matrix.go_version }}
 
     - name: Build Go program
-      run: GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o gofakeroot main.go
+      run: GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o gofakeroot .
 
     - name: Create tar.gz archive
       run: tar -czf gofakeroot-${{ matrix.os }}-${{ matrix.arch }}.tar.gz gofakeroot
