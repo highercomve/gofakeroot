@@ -1,0 +1,41 @@
+name: Build and Package
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Package
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        go_version: ['1.x']
+        os: [linux]
+        arch: [amd64, arm, arm64]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go_version }}
+
+    - name: Build Go program
+      run: GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o gofakeroot main.go
+
+    - name: Create tar.gz archive
+      run: tar -czf gofakeroot-${{ matrix.os }}-${{ matrix.arch }}.tar.gz gofakeroot
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: gofakeroot-${{ matrix.os }}-${{ matrix.arch }}
+        path: gofakeroot-${{ matrix.os }}-${{ matrix.arch }}.tar.gz
