@@ -8,16 +8,10 @@
 # make build-linux-arm  # compile linux arm binary
 # make build-linux-arm64  # compile linux arm64 binary
 # make build-linux-riscv64  # compile linux arm64 binary
-# make build-windows-386  # compile windows 386 binary
-# make build-windows-amd64  # compile windows amd64 binary
-# make build-darwin-amd64  # compile darwin amd64 binary
-# make build-darwin-arm64  # compile darwin arm64 binary
 # make optimize     # optimize all binary for all platforms
 # make optimize-linux-amd64  # optimize linux amd64 binary
 # make optimize-linux-arm  # optimize linux arm binary
 # make optimize-linux-arm64  # optimize linux arm64 binary
-# make optimize-windows-386  # optimize windows 386 binary
-# make optimize-windows-amd64  # optimize windows amd64 binary
 .PHONY = all clean build build-% optimize optimize-%
 
 BINARY_NAME = gofakeroot
@@ -46,8 +40,8 @@ BUILD_DIR ?= build
 export BUILD_DIR
 
 
-SUPPORTED_PLATFORMS = linux-amd64 linux-arm linux-arm64 linux-riscv64 windows-386 windows-amd64 darwin-amd64 darwin-arm64 
-SUPPORT_OPTIMIZATION = linux-amd64 linux-arm linux-arm64 windows-386 windows-amd64
+SUPPORTED_PLATFORMS = linux-amd64 linux-arm linux-arm64 linux-riscv64
+SUPPORT_OPTIMIZATION = linux-amd64 linux-arm linux-arm64
 
 all: clean build
 
