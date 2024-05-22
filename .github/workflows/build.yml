@@ -31,11 +31,8 @@ jobs:
     - name: Build Go program
       run: GOOS=${{ matrix.os }} GOARCH=${{ matrix.arch }} go build -o gofakeroot .
 
-    - name: Create tar.gz archive
-      run: tar -czf gofakeroot-${{ matrix.os }}-${{ matrix.arch }}.tar.gz gofakeroot
-
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: gofakeroot-${{ matrix.os }}-${{ matrix.arch }}
-        path: gofakeroot-${{ matrix.os }}-${{ matrix.arch }}.tar.gz
+        path: gofakeroot
