@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        go_version: ['1.x']
+        go_version: ['1.22.x']
         os: [linux]
         arch: [amd64, arm, arm64]
 
